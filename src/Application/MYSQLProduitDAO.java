@@ -2,7 +2,7 @@ package Application;
 
 import java.sql.*;
 
-public class Produit {
+public class MYSQLProduitDAO {
     public static void add(int id_produit, String nom, String description, double tarif, String visuel, int id_categorie){
         try {
             Connection laConnexion = Connexion.creeConnexion();

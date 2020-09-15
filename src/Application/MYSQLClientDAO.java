@@ -2,7 +2,7 @@ package Application;
 
 import java.sql.*;
 
-public class Client {
+public class MYSQLClientDAO {
     public static void add(int id_client, String nom, String prenom, String mdp, int num, String voie, int cp, String ville, String pays){
         try {
             Connection laConnexion = Connexion.creeConnexion();
