@@ -3,40 +3,65 @@ package Application;
 import java.sql.*;
 
 public class MYSQLProduitDAO {
-    public static void add(int id_produit, String nom, String description, double tarif, String visuel, int id_categorie){
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getDescription(int id_produit) {
+        String description =null;
         try {
             Connection laConnexion = Connexion.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="INSERT INTO produit VALUES("+id_produit+",'"+nom+"','"+description+"','"+tarif+"', '"+visuel+"', '"+id_categorie+"')";
-            requete.executeUpdate(query);
-            System.out.println("Produit ajoute");
+            String query="select description  from produit where id_produit="+id_produit;
+            ResultSet res=requete.executeQuery(query); description = res.getString("description");
         } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
         }
+        return description ;
     }
 
-    public static void delete(int id_produit){
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getVisuel(int id_produit) {
+        String visuel=null;
         try {
             Connection laConnexion = Connexion.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="delete from produit where id_produit="+id_produit;
-            requete.executeUpdate(query);
-            System.out.println("produit supprime");
-            } catch(SQLException sqle){
+            String query="select visuel from produit where id_produit="+id_produit;
+            ResultSet res=requete.executeQuery(query);
+            visuel= res.getString("visuel");
+        } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
-            }  
+        }
+        return visuel;
     }
 
-    public static void update(int id_produit){
-        try {
-            Connection laConnexion = Connexion.creeConnexion();
-            Statement requete= laConnexion.createStatement();
-            String query="update from produit where id_produit="+id_produit;
-            requete.executeUpdate(query);
-            System.out.println("produit mis a jour");
-            } catch(SQLException sqle){
-            System.out.println("Probleme select:" +sqle.getMessage());
-        }  
+
+    public void setVisuel(String visuel) {
+        this.visuel = visuel;
+    }
+
+    public double getTarif() {
+        return tarif;
+    }
+
+    public void setTarif(double tarif) {
+        this.tarif = tarif;
+    }
+
+    public int getId_categorie() {
+        return id_categorie;
+    }
+
+    public void setId_categorie(int id_categorie) {
+        this.id_categorie = id_categorie;
     }
 
     public static void AfficherProduit() {
