@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 package Application;
 
-=======
->>>>>>> 53fa57723edaf7a2be0cbe34bf4a7f6c1dd20f72
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

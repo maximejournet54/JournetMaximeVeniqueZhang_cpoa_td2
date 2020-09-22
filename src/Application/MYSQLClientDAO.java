@@ -10,42 +10,37 @@ public class MYSQLClientDAO implements DAO<Client>{
     @Override
     public boolean create(Object T) {
         try {
-<<<<<<< HEAD
+            Client c=(Client) T;
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="select nom from client where id_client="+id_client;
+            String query="select nom from client where id_client="+c.id_client;
             ResultSet res=requete.executeQuery(query);
-            nom= res.getString("nom");
+            String nom= res.getString("nom");
+            return true;
         } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
-=======
             Client.create(T);
-            return true;
-
-        }catch (Exception e){
             return false;
->>>>>>> 53fa57723edaf7a2be0cbe34bf4a7f6c1dd20f72
+
         }
     }
 
     @Override
     public boolean delete(Object T) {
         try {
-<<<<<<< HEAD
+            Client c=(Client) T;
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="select prenom from client where id_client="+id_client;
+            String query="select prenom from client where id_client="+c.id_client;
             ResultSet res=requete.executeQuery(query);
-            prenom= res.getString("prenom");
+            String prenom= res.getString("prenom");
         } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
-=======
             Client.delete(T);
             return true;
 
         }catch (Exception e){
             return false;
->>>>>>> 53fa57723edaf7a2be0cbe34bf4a7f6c1dd20f72
         }
     }
 
@@ -63,18 +58,16 @@ public class MYSQLClientDAO implements DAO<Client>{
     @Override
     public Client getById(int id_client) {
         try {
-<<<<<<< HEAD
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
             String query="select num,voie,cp,ville,pays from client where id_client="+id_client;
             ResultSet res=requete.executeQuery(query);
-            adresse= res.getString("num")+res.getString("voie")+
+            String adresse= res.getString("num")+res.getString("voie")+
             res.getString("cp")+
             res.getString("ville")+res.getString("pays");
         } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
-=======
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete = laConnexion.createStatement();
             ResultSet res = requete.executeQuery("select * from Client where id_client ="+id_client);
             while (res.next()) {
@@ -102,7 +95,6 @@ public class MYSQLClientDAO implements DAO<Client>{
 
         } catch (SQLException sqle) {
             System.out.println("Pb dans select " + sqle.getMessage());
->>>>>>> 53fa57723edaf7a2be0cbe34bf4a7f6c1dd20f72
         }
         return null;
     }
