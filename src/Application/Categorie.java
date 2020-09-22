@@ -1,14 +1,27 @@
-package Application;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Categorie {
-    
-    public static void add(int id_client, String nom , String prenom){
+    private String id;
+    private String visuel;
+    private String titre;
+
+    public Categorie(String id, String visuel, String titre) {
+        this.id = id;
+        this.visuel = visuel;
+        this.titre = titre;
+    }
+
+    public static void create(Object T){
+
+
         try {
+            Categorie c=(Categorie) T;
             Connection laConnexion = Connexion.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="INSERT INTO Categorie VALUES("+id_client+",'"+nom+"', '"+prenom+"')";
+            String query="INSERT INTO Categorie VALUES("+c.id+",'"+c.visuel+"', '"+c.titre+"')";
             requete.executeUpdate(query);
             System.out.println("Ligne de categorie ajoutee");
         } catch(SQLException sqle){
@@ -16,28 +29,30 @@ public class Categorie {
         }
     }
 
-    public static void delete(int id_categorie){
-    	try {
+    public static void delete(Object T){
+        try {
+            Categorie c=(Categorie) T;
             Connection laConnexion = Connexion.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="delete from categorie where id_categorie="+id_categorie;
+            String query="delete from categorie where id_categorie="+c.id;
             requete.executeUpdate(query);
             System.out.println("categorie supprimee");
-        	} catch(SQLException sqle){
+        } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
-            }  
         }
+    }
 
-    public static void update(int id_categorie){
+    public static void update(Object T){
         try {
+            Categorie c=(Categorie) T;
             Connection laConnexion = Connexion.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="update from categorie";
+            String query="update from categorie where id_categorie ="+c.id;
             requete.executeUpdate(query);
             System.out.println("Ligne de categorie mise a jour");
-        	} catch(SQLException sqle){
+        } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
-        	}  
+        }
     }
     public static void AfficherCategorie() {
         try {
@@ -51,7 +66,7 @@ public class Categorie {
                 System.out.println(id);
                 System.out.println(titre);
                 System.out.println(visuel);
-                
+
             }
 
 
@@ -69,5 +84,3 @@ public class Categorie {
     }
 
 }
-
-
