@@ -1,25 +1,65 @@
-package Application;
-
 import java.sql.*;
 
 public class Client {
-    public static void add(int id_client, String nom, String prenom, String mdp, int num, String voie, int cp, String ville, String pays){
+    String id_client,nom,prenom,identifiant,mdp,num,voie,cp,ville,pays;
+
+    public Client(String id_client, String nom, String prenom, String identifiant, String mdp, String num, String voie, String cp, String ville, String pays) {
+        this.id_client = id_client;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.identifiant = identifiant;
+        this.mdp = mdp;
+        this.num = num;
+        this.voie = voie;
+        this.cp = cp;
+        this.ville = ville;
+        this.pays = pays;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id_client='" + id_client + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", identifiant='" + identifiant + '\'' +
+                ", mdp='" + mdp + '\'' +
+                ", num='" + num + '\'' +
+                ", voie='" + voie + '\'' +
+                ", cp='" + cp + '\'' +
+                ", ville='" + ville + '\'' +
+                ", pays='" + pays + '\'' +
+                '}';
+    }
+
+    public static void create(Object T){
         try {
+<<<<<<< HEAD
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
+=======
+            Client c = (Client) T;
+            Connection laConnexion = Connexion.creeConnexion();
+>>>>>>> 53fa57723edaf7a2be0cbe34bf4a7f6c1dd20f72
             Statement requete= laConnexion.createStatement();
-            String query="INSERT INTO Client VALUES("+id_client+",'"+nom+"','"+prenom+"','"+mdp+"','"+num+"','"+voie+"','"+cp+"','"+ville+"','"+pays+"')";
+            String query="INSERT INTO Client VALUES("+c.id_client+","+c.nom+","+c.prenom+","+c.mdp+","+c.num+","+c.voie+","+c.cp+","+c.ville+","+c.pays+")";
             requete.executeUpdate(query);
-            System.out.println("Produit ajoute");
+            System.out.println("Client ajoute");
+            System.out.println("Client ajoute");
         } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
         }            
     }
 
-    public static void delete(int id_client){
+    public static void delete(Object T){
         try {
+<<<<<<< HEAD
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
+=======
+            Client c = (Client) T;
+            Connection laConnexion = Connexion.creeConnexion();
+>>>>>>> 53fa57723edaf7a2be0cbe34bf4a7f6c1dd20f72
             Statement requete= laConnexion.createStatement();
-            String query="delete from Client where id_client="+id_client;
+            String query="delete from Client where id_client="+c.id_client;
             requete.executeUpdate(query);
             System.out.println("client supprime");
             } catch(SQLException sqle){
@@ -27,11 +67,16 @@ public class Client {
         }          
     }
 
-    public static void update(int id_client){
+    public static void update(Object T){
         try {
+<<<<<<< HEAD
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
+=======
+            Client c = (Client) T;
+            Connection laConnexion = Connexion.creeConnexion();
+>>>>>>> 53fa57723edaf7a2be0cbe34bf4a7f6c1dd20f72
             Statement requete= laConnexion.createStatement();
-            String query="update from Client where id_client="+id_client;
+            String query="update from Client where id_client="+c.id_client;
             requete.executeUpdate(query);
             System.out.println("client mis a jour");
             } catch(SQLException sqle){
@@ -44,12 +89,7 @@ public class Client {
             Statement requete = laConnexion.createStatement();
             ResultSet res = requete.executeQuery("select * from Client");
             while (res.next()) {
-                String id = res.getString("id_client");
-                String nom = res.getString("nom");
-                String prenom = res.getString("prenom");
-                System.out.println(id);
-                System.out.println(nom);
-                System.out.println(prenom);
+                System.out.println(new Client(res.getString("id_client"), res.getString("nom"), res.getString("prenom"), res.getString("identifiant"), res.getString("mot_de_passe"), res.getString("adr_numero"), res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays")));
             }
 
 
@@ -63,7 +103,6 @@ public class Client {
         } catch (SQLException sqle) {
             System.out.println("Pb dans select " + sqle.getMessage());
         }
-
     }
 }
     
