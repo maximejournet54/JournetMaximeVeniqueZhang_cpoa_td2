@@ -1,4 +1,3 @@
-package Application;
 import java.sql.*;
 
 public class Client {
@@ -15,6 +14,22 @@ public class Client {
         this.cp = cp;
         this.ville = ville;
         this.pays = pays;
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id_client='" + id_client + '\'' +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", identifiant='" + identifiant + '\'' +
+                ", mdp='" + mdp + '\'' +
+                ", num='" + num + '\'' +
+                ", voie='" + voie + '\'' +
+                ", cp='" + cp + '\'' +
+                ", ville='" + ville + '\'' +
+                ", pays='" + pays + '\'' +
+                '}';
     }
 
     public static void create(Object T){
@@ -62,12 +77,7 @@ public class Client {
             Statement requete = laConnexion.createStatement();
             ResultSet res = requete.executeQuery("select * from Client");
             while (res.next()) {
-                String id = res.getString("id_client");
-                String nom = res.getString("nom");
-                String prenom = res.getString("prenom");
-                System.out.println(id);
-                System.out.println(nom);
-                System.out.println(prenom);
+                System.out.println(new Client(res.getString("id_client"), res.getString("nom"), res.getString("prenom"), res.getString("identifiant"), res.getString("mot_de_passe"), res.getString("adr_numero"), res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays")));
             }
 
 
@@ -81,7 +91,6 @@ public class Client {
         } catch (SQLException sqle) {
             System.out.println("Pb dans select " + sqle.getMessage());
         }
-
     }
 }
     
