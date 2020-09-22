@@ -7,11 +7,11 @@ public class MYSQLClientDAO {
         //mettre requete sql
         String nom=null;
         try {
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
             String query="select nom from client where id_client="+id_client;
             ResultSet res=requete.executeQuery(query);
-            visuel= res.getString("nom");
+            nom= res.getString("nom");
         } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
         }
@@ -21,11 +21,11 @@ public class MYSQLClientDAO {
         //mettre requete sql
         String prenom=null;
         try {
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
             String query="select prenom from client where id_client="+id_client;
             ResultSet res=requete.executeQuery(query);
-            visuel= res.getString("prenom");
+            prenom= res.getString("prenom");
         } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
         }
@@ -37,7 +37,7 @@ public class MYSQLClientDAO {
         //mettre requete sql
         String adresse=null;
         try {
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
             String query="select num,voie,cp,ville,pays from client where id_client="+id_client;
             ResultSet res=requete.executeQuery(query);

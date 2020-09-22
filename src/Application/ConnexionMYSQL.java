@@ -2,7 +2,7 @@ package Application;
 
 import java.sql.*;
 
-public class Connexion {
+public class ConnexionMYSQL {
     public static Connection creeConnexion(){
         String url = "jdbc:mysql://devbdd.iutmetz.univ-lorraine.fr:3306/journet9u_tdcpoa";
         url += "?serverTimezone=Europe/Paris";

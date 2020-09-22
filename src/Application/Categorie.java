@@ -1,3 +1,5 @@
+package Application;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +21,7 @@ public class Categorie {
 
         try {
             Categorie c=(Categorie) T;
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
             String query="INSERT INTO Categorie VALUES("+c.id+",'"+c.visuel+"', '"+c.titre+"')";
             requete.executeUpdate(query);
@@ -32,7 +34,7 @@ public class Categorie {
     public static void delete(Object T){
         try {
             Categorie c=(Categorie) T;
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
             String query="delete from categorie where id_categorie="+c.id;
             requete.executeUpdate(query);
@@ -45,7 +47,7 @@ public class Categorie {
     public static void update(Object T){
         try {
             Categorie c=(Categorie) T;
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
             String query="update from categorie where id_categorie ="+c.id;
             requete.executeUpdate(query);
@@ -56,7 +58,7 @@ public class Categorie {
     }
     public static void AfficherCategorie() {
         try {
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete = laConnexion.createStatement();
             ResultSet res = requete.executeQuery("select id_categorie, titre, visuel from Categorie");
             while (res.next()) {

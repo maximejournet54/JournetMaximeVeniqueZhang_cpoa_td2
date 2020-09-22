@@ -1,79 +1,61 @@
 package Application;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class MYSQLProduitDAO {
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getDescription(int id_produit) {
-        String description =null;
+public class MYSQLProduitDAO implements DAO<Produit>{
+    @Override
+    public boolean create(Object T) {
         try {
-            Connection laConnexion = Connexion.creeConnexion();
-            Statement requete= laConnexion.createStatement();
-            String query="select description  from produit where id_produit="+id_produit;
-            ResultSet res=requete.executeQuery(query); description = res.getString("description");
-        } catch(SQLException sqle){
-            System.out.println("Probleme select:" +sqle.getMessage());
+            Produit.create(T);
+            return true;
+
+        }catch (Exception e){
+            return false;
         }
-        return description ;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getVisuel(int id_produit) {
-        String visuel=null;
+    @Override
+    public boolean delete(Object T) {
         try {
-            Connection laConnexion = Connexion.creeConnexion();
-            Statement requete= laConnexion.createStatement();
-            String query="select visuel from produit where id_produit="+id_produit;
-            ResultSet res=requete.executeQuery(query);
-            visuel= res.getString("visuel");
-        } catch(SQLException sqle){
-            System.out.println("Probleme select:" +sqle.getMessage());
+            Produit.delete(T);
+            return true;
+
+        }catch (Exception e){
+            return false;
         }
-        return visuel;
     }
 
-
-    public void setVisuel(String visuel) {
-        this.visuel = visuel;
-    }
-
-    public double getTarif() {
-        return tarif;
-    }
-
-    public void setTarif(double tarif) {
-        this.tarif = tarif;
-    }
-
-    public int getId_categorie() {
-        return id_categorie;
-    }
-
-    public void setId_categorie(int id_categorie) {
-        this.id_categorie = id_categorie;
-    }
-
-    public static void AfficherProduit() {
+    @Override
+    public boolean update(Object T) {
         try {
-            Connection laConnexion = Connexion.creeConnexion();
+            Produit.update(T);
+            return true;
+
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    @Override
+    public Produit getById(int id_produit) {
+        try {
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete = laConnexion.createStatement();
-            ResultSet res = requete.executeQuery("select id_produit, id_produit from Produit");
+            ResultSet res = requete.executeQuery("select id_produit, nom, description, tarif, visuel, id_categorie from Produit where id_produit ="+id_produit);
             while (res.next()) {
-                String nom = res.getString("id_produit");
-                System.out.println(nom);
-            }
+                String id =res.getString("id_produit");
+                String nom=res.getString("nom");
+                String description=res.getString("description");
+                String tarif=res.getString("tarif");
+                String visuel=res.getString("visuel");
+                String id_categorie=res.getString("id_categorie");
 
+                return new Produit(id,nom,description,tarif, visuel,id_categorie);
+
+            }
 
             if (res != null)
                 res.close();
@@ -85,6 +67,8 @@ public class MYSQLProduitDAO {
         } catch (SQLException sqle) {
             System.out.println("Pb dans select " + sqle.getMessage());
         }
+        return null;
     }
+    
 }
 

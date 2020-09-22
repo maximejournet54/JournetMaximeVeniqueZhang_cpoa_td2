@@ -5,7 +5,7 @@ import java.sql.*;
 public class Client {
     public static void add(int id_client, String nom, String prenom, String mdp, int num, String voie, int cp, String ville, String pays){
         try {
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
             String query="INSERT INTO Client VALUES("+id_client+",'"+nom+"','"+prenom+"','"+mdp+"','"+num+"','"+voie+"','"+cp+"','"+ville+"','"+pays+"')";
             requete.executeUpdate(query);
@@ -17,7 +17,7 @@ public class Client {
 
     public static void delete(int id_client){
         try {
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
             String query="delete from Client where id_client="+id_client;
             requete.executeUpdate(query);
@@ -29,7 +29,7 @@ public class Client {
 
     public static void update(int id_client){
         try {
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
             String query="update from Client where id_client="+id_client;
             requete.executeUpdate(query);
@@ -40,7 +40,7 @@ public class Client {
     }
     public static void AfficherClient() {
         try {
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete = laConnexion.createStatement();
             ResultSet res = requete.executeQuery("select * from Client");
             while (res.next()) {

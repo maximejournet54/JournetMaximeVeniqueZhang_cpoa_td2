@@ -1,10 +1,11 @@
-import java.beans.Expression;
+package Application;
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class MYSQLCategorie implements DAO<Categorie>{
+public class MYSQLCategorieDAO implements DAO<Categorie>{
 
     @Override
     public boolean create(Object T) {
@@ -42,7 +43,7 @@ public class MYSQLCategorie implements DAO<Categorie>{
     @Override
     public Categorie getById(int id_categorie) {
         try {
-            Connection laConnexion = Connexion.creeConnexion();
+            Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete = laConnexion.createStatement();
             ResultSet res = requete.executeQuery("select id_categorie, titre, visuel from Categorie where id_categorie ="+id_categorie);
             while (res.next()) {
