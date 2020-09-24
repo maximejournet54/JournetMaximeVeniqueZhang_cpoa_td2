@@ -35,7 +35,6 @@ public class MYSQLCommandeDAO implements DAO<Commande>{
         try {
             Commande.update(T);
             return true;
-
         }catch (Exception e){
             return false;
         }
@@ -44,24 +43,21 @@ public class MYSQLCommandeDAO implements DAO<Commande>{
     @Override
     public Commande getById(int id_commande) {
         try {
-            Connection laConnexion = ConnexionMYSQL.creeConnexion();
-            Statement requete = laConnexion.createStatement();
-            ResultSet res = requete.executeQuery("select id_commande, date_commande, id_client from Commande where id_commande ="+id_commande);
-            while (res.next()) {
-                String id =res.getString("id_commande");
-                Date date= res.getDate("date_commande");
-                String id_client=res.getString("id_client");
-
-                return new Commande(id, date, id_client);
+                Connection laConnexion = ConnexionMYSQL.creeConnexion();
+                Statement requete = laConnexion.createStatement();
+                ResultSet res = requete.executeQuery("select * from Commande where id_commande ="+id_commande);
+                while (res.next()) {
+                    int id =res.getInt("id_commande");
+                    Date date= res.getDate("date_commande");
+                    int id_client=res.getInt("id_client");
+                    return new Commande(id, date, id_client);
             }
-
             if (res != null)
                 res.close();
             if (requete != null)
                 requete.close();
             if (laConnexion != null)
                 laConnexion.close();
-
         } catch (SQLException sqle) {
             System.out.println("Pb dans select " + sqle.getMessage());
         }

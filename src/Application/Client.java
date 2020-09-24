@@ -3,9 +3,10 @@ package Application;
 import java.sql.*;
 
 public class Client {
-    String id_client,nom,prenom,identifiant,mdp,num,voie,cp,ville,pays;
+    String nom, prenom, identifiant ,mdp, voie, ville, pays;
+    int id_client, num, cp;
 
-    public Client(String id_client, String nom, String prenom, String identifiant, String mdp, String num, String voie, String cp, String ville, String pays) {
+    public Client(int id_client, String nom, String prenom, String identifiant, String mdp, int num, String voie, int cp, String ville, String pays) {
         this.id_client = id_client;
         this.nom = nom;
         this.prenom = prenom;
@@ -17,6 +18,14 @@ public class Client {
         this.ville = ville;
         this.pays = pays;
     }
+
+    public void setId(int id_client) {
+        this.id_client=id_client;
+	}
+
+	public int getId() {
+		return id_client;
+	}
 
     @Override
     public String toString() {
@@ -73,23 +82,21 @@ public class Client {
             System.out.println("Probleme select:" +sqle.getMessage());
         }  
     }
+
     public static void AfficherClient() {
         try {
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete = laConnexion.createStatement();
             ResultSet res = requete.executeQuery("select * from Client");
             while (res.next()) {
-                System.out.println(new Client(res.getString("id_client"), res.getString("nom"), res.getString("prenom"), res.getString("identifiant"), res.getString("mot_de_passe"), res.getString("adr_numero"), res.getString("adr_voie"), res.getString("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays")));
+                System.out.println(new Client(res.getInt("id_client"), res.getString("nom"), res.getString("prenom"), res.getString("identifiant"), res.getString("mot_de_passe"), res.getInt("adr_numero"), res.getString("adr_voie"), res.getInt("adr_code_postal"), res.getString("adr_ville"), res.getString("adr_pays")));
             }
-
-
             if (res != null)
                 res.close();
             if (requete != null)
                 requete.close();
             if (laConnexion != null)
                 laConnexion.close();
-
         } catch (SQLException sqle) {
             System.out.println("Pb dans select " + sqle.getMessage());
         }

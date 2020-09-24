@@ -4,14 +4,21 @@ import java.util.Date;
 import java.sql.*;
 
 public class Commande {
-    String id_commande,id_client;
+    int id_commande,id_client;
     Date date_commande;
-	public Commande(String id_commande, Date date_commande, String id_client) {
-		super();
+	public Commande(int id_commande, Date date_commande, int id_client) {
 		this.id_commande = id_commande;
 		this.id_client = id_client;
 		this.date_commande = date_commande;
     }
+
+    public void setId(int id_commande) {
+        this.id_commande = id_commande;
+	}
+
+	public int getId() {
+		return id_commande;
+	}
     
 	@Override
 	public String toString() {
@@ -57,28 +64,23 @@ public class Commande {
             System.out.println("Probleme select:" +sqle.getMessage());
         }  
     }
-    public static void AfficherClient() {
+
+    public static void AfficherCommande() {
         try {
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete = laConnexion.createStatement();
             ResultSet res = requete.executeQuery("select * from Commande");
             while (res.next()) {
-                System.out.println(new Commande(res.getString("id_commande"), res.getDate("date_commande"), res.getString("id_client")));
+                System.out.println(new Commande(res.getInt("id_commande"), res.getDate("date_commande"), res.getInt("id_client")));
             }
-
-
             if (res != null)
                 res.close();
             if (requete != null)
                 requete.close();
             if (laConnexion != null)
                 laConnexion.close();
-
         } catch (SQLException sqle) {
             System.out.println("Pb dans select " + sqle.getMessage());
         }
-    }
-    
-
-    
+    }    
 }

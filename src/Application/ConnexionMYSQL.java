@@ -9,13 +9,11 @@ public class ConnexionMYSQL {
         String login= "journet9u_appli";
         String pwd = "23JAN2001";
         Connection maConnexion=null;
-
         try {
             maConnexion=DriverManager.getConnection(url, login, pwd);
         } catch (SQLException sqle) {
             System.out.println("Erreur connexion " +sqle.getMessage());
             }
         return maConnexion;
-        }
-        
+        }       
 }

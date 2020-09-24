@@ -6,18 +6,25 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Categorie {
-    private String id;
+    private int id;
     private String visuel;
     private String titre;
 
-    public Categorie(String id, String visuel, String titre) {
+    public Categorie(int id, String visuel, String titre) {
         this.id = id;
         this.visuel = visuel;
         this.titre = titre;
     }
 
-    public static void create(Object T){
+    public void setId(int id) {
+        this.id=id;
+	}
 
+	public int getId() {
+		return id;
+	}
+
+    public static void create(Object T){
 
         try {
             Categorie c=(Categorie) T;
@@ -25,7 +32,7 @@ public class Categorie {
             Statement requete= laConnexion.createStatement();
             String query="INSERT INTO Categorie VALUES("+c.id+",'"+c.visuel+"', '"+c.titre+"')";
             requete.executeUpdate(query);
-            System.out.println("Ligne de categorie ajoutee");
+            System.out.println("Categorie ajoutee");
         } catch(SQLException sqle){
             System.out.println("Pb select:" +sqle.getMessage());
         }
@@ -62,27 +69,21 @@ public class Categorie {
             Statement requete = laConnexion.createStatement();
             ResultSet res = requete.executeQuery("select id_categorie, titre, visuel from Categorie");
             while (res.next()) {
-                String id = res.getString("id_categorie");
+                int id = res.getInt("id_categorie");
                 String titre=res.getString("titre");
                 String visuel=res.getString("visuel");
                 System.out.println(id);
                 System.out.println(titre);
                 System.out.println(visuel);
-
             }
-
-
             if (res != null)
                 res.close();
             if (requete != null)
                 requete.close();
             if (laConnexion != null)
                 laConnexion.close();
-
         } catch (SQLException sqle) {
             System.out.println("Pb dans select " + sqle.getMessage());
         }
-
     }
-
 }
