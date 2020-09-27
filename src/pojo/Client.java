@@ -1,6 +1,8 @@
-package Application;
+package pojo;
 
 import java.sql.*;
+
+import connexion.ConnexionMYSQL;
 
 public class Client {
     String nom, prenom, identifiant ,mdp, voie, ville, pays;

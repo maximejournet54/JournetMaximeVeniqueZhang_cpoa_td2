@@ -1,9 +1,12 @@
-package Application;
+package dao;
 
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import connexion.ConnexionMYSQL;
+import pojo.LigneCommande;
 
 public class MYSQLLigneCommandeDAO implements DAO<LigneCommande> {
     @Override

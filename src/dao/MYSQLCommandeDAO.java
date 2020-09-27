@@ -1,10 +1,13 @@
-package Application;
+package dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+
+import connexion.ConnexionMYSQL;
+import pojo.Commande;
 
 public class MYSQLCommandeDAO implements DAO<Commande>{
 

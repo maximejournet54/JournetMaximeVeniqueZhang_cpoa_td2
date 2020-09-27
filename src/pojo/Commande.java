@@ -1,15 +1,20 @@
-package Application;
+package pojo;
 
 import java.util.Date;
+
+import connexion.ConnexionMYSQL;
+
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Commande {
     int id_commande,id_client;
     Date date_commande;
 	public Commande(int id_commande, Date date_commande, int id_client) {
-		this.id_commande = id_commande;
-		this.id_client = id_client;
-		this.date_commande = date_commande;
+        this.id_commande = id_commande;
+        this.date_commande = date_commande;
+		this.id_client = id_client;		
     }
 
     public void setId(int id_commande) {
@@ -22,7 +27,7 @@ public class Commande {
     
 	@Override
 	public String toString() {
-		return "Commande [id_commande=" + id_commande + ", id_client=" + id_client + ", date_commande=" + date_commande
+		return "Commande [id_commande=" + id_commande +", date_commande=" + date_commande+ ", id_client=" + id_client 
 				+ "]";
 	}
     

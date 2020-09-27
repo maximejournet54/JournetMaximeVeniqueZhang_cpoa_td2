@@ -1,7 +1,9 @@
-package Application;
+package dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import pojo.LigneCommande;
 
 public class ListeMemoireLigneCommandeDAO extends MYSQLLigneCommandeDAO{
     private static ListeMemoireLigneCommandeDAO instance;

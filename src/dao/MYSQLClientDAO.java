@@ -1,6 +1,9 @@
-package Application;
+package dao;
 
 import java.sql.*;
+
+import connexion.ConnexionMYSQL;
+import pojo.Client;
 
 public class MYSQLClientDAO implements DAO<Client>{
     @Override

@@ -1,7 +1,9 @@
-package Application;
+package dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import pojo.Client;
 
 public class ListeMemoireClientDAO extends MYSQLClientDAO{
     private static ListeMemoireClientDAO instance;

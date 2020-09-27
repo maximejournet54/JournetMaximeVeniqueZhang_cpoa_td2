@@ -1,9 +1,12 @@
-package Application;
+package dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import connexion.ConnexionMYSQL;
+import pojo.Produit;
 
 public class MYSQLProduitDAO implements DAO<Produit>{
     @Override

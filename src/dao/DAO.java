@@ -1,4 +1,4 @@
-package Application;
+package dao;
 
 public interface DAO<T> {
 	public abstract boolean create(Object T);

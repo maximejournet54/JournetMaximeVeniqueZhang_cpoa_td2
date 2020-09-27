@@ -1,7 +1,9 @@
-package Application;
+package dao;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import pojo.Produit;
 
 public class ListeMemoireProduitDAO extends MYSQLProduitDAO {
     private static ListeMemoireProduitDAO instance;
