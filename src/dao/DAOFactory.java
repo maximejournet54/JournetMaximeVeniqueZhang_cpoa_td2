@@ -8,14 +8,20 @@ import pojo.LigneCommande;
 import pojo.Produit;
 
 public abstract class DAOFactory {
-    public static DAOFactory getDAOFactory(Persistance cible) {
-        DAOFactory daoF = null;
+    public static Object getDAOFactory(Persistance cible) {
+        Object daoF = null;
         switch (cible) {
             case MYSQL:
                 daoF = new MYSQLFactoryDAO();
                 break;
             case LISTE_MEMOIRE:
                 daoF = new ListeMemoireFactoryDAO();
+                break;
+            case SQL:
+
+                break;
+            case XML:
+
             break; 
         }
         return daoF;

@@ -15,7 +15,6 @@ public class LigneCommande {
         this.id_produit=id_produit;
         this.quantite=quantite;
         this.tarif_unitaire=tarif_unitaire;
-        //this.couple_id= new {id_commande, id_produit};
     }
 
     public void setId(int id_commande) {

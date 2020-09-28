@@ -1,7 +1,5 @@
 package pojo;
 
-import java.util.Date;
-
 import connexion.ConnexionMYSQL;
 
 import java.sql.*;
@@ -10,10 +8,12 @@ import java.time.format.DateTimeFormatter;
 
 public class Commande {
     int id_commande,id_client;
-    Date date_commande;
-	public Commande(int id_commande, Date date_commande, int id_client) {
+    LocalDate date_commande;
+	public Commande(int id_commande, String date_commande, int id_client) {
         this.id_commande = id_commande;
-        this.date_commande = date_commande;
+        DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate dateDebut = LocalDate.parse(date_commande, formatage);
+        this.date_commande = dateDebut;
 		this.id_client = id_client;		
     }
 
@@ -76,7 +76,7 @@ public class Commande {
             Statement requete = laConnexion.createStatement();
             ResultSet res = requete.executeQuery("select * from Commande");
             while (res.next()) {
-                System.out.println(new Commande(res.getInt("id_commande"), res.getDate("date_commande"), res.getInt("id_client")));
+                System.out.println(new Commande(res.getInt("id_commande"), res.getString("date_commande"), res.getInt("id_client")));
             }
             if (res != null)
                 res.close();

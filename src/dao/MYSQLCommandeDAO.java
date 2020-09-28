@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 
 import connexion.ConnexionMYSQL;
 import pojo.Commande;
@@ -51,7 +50,7 @@ public class MYSQLCommandeDAO implements DAO<Commande>{
                 ResultSet res = requete.executeQuery("select * from Commande where id_commande ="+id_commande);
                 while (res.next()) {
                     int id =res.getInt("id_commande");
-                    Date date= res.getDate("date_commande");
+                    String date= res.getString("date_commande");
                     int id_client=res.getInt("id_client");
                     return new Commande(id, date, id_client);
             }

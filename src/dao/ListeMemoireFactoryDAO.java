@@ -11,7 +11,6 @@ public class ListeMemoireFactoryDAO {
     public DAO<Commande> getCommandeDAO() {
         return ListeMemoireCommandeDAO.getInstance();
     }
-
   
     public DAO<LigneCommande> getLigneCommandeDAO() {
         return ListeMemoireLigneCommandeDAO.getInstance();
