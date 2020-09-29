@@ -19,7 +19,7 @@ public class ListeMemoireCommandeDAO extends MYSQLCommandeDAO {
 
 	private ListeMemoireCommandeDAO() {
 		this.donnees = new ArrayList<Commande>();
-		//this.donnees.add(new Commande(10, "27/09/2020", 1));
+		this.donnees.add(new Commande(10, "27/09/2020", 1));
 	}
 
 	public boolean create(Commande objet) {

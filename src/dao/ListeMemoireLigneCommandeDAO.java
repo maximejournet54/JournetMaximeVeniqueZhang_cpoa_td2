@@ -9,7 +9,6 @@ public class ListeMemoireLigneCommandeDAO extends MYSQLLigneCommandeDAO{
 	private HashMap<Integer, LigneCommande> donnees;
 
 	public static  ListeMemoireLigneCommandeDAO getInstance() {
-
 		if (instance == null) {
 			instance = new ListeMemoireLigneCommandeDAO();
 		}
@@ -18,10 +17,9 @@ public class ListeMemoireLigneCommandeDAO extends MYSQLLigneCommandeDAO{
 
 	private ListeMemoireLigneCommandeDAO() {
 		this.donnees = new HashMap<Integer,LigneCommande>();
-		this.donnees.put(10, new LigneCommande(10, 3, 2, 5.3));
-		this.donnees.put(11, new LigneCommande(11, 4, 6, 3.2));
 	}
 
+	@SuppressWarnings("unlikely-arg-type")
 	public boolean create(LigneCommande objet) {
 		objet.setId(3);
 		while (this.donnees.entrySet().contains(objet)) {

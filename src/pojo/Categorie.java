@@ -29,6 +29,22 @@ public class Categorie {
 	public int getId() {
 		return id;
 	}
+	
+	public String getVisuel() {
+		return visuel;
+	}
+
+	public void setVisuel(String visuel) {
+		this.visuel = visuel;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
 
     public static void create(Object T){
 
@@ -92,4 +108,6 @@ public class Categorie {
             System.out.println("Pb dans select " + sqle.getMessage());
         }
     }
+
+	
 }
