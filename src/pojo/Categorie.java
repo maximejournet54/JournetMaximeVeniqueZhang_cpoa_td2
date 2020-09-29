@@ -17,6 +17,10 @@ public class Categorie {
         this.visuel = visuel;
         this.titre = titre;
     }
+    
+    public Categorie(int id) {
+    	this.setId(id);
+    }
 
     public void setId(int id) {
         this.id=id;
@@ -45,7 +49,7 @@ public class Categorie {
             Categorie c=(Categorie) T;
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="delete from categorie where id_categorie="+c.id;
+            String query="delete from Categorie where id_categorie="+c.id;
             requete.executeUpdate(query);
             System.out.println("categorie supprimee");
         } catch(SQLException sqle){
@@ -58,9 +62,9 @@ public class Categorie {
             Categorie c=(Categorie) T;
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="update from categorie where id_categorie ="+c.id;
+            String query="update from Categorie where id_categorie ="+c.id;
             requete.executeUpdate(query);
-            System.out.println("Ligne de categorie mise a jour");
+            System.out.println("Categorie mise a jour");
         } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
         }

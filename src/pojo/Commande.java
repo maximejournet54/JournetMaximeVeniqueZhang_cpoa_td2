@@ -17,7 +17,11 @@ public class Commande {
 		this.id_client = id_client;		
     }
 
-    public void setId(int id_commande) {
+    public Commande(int id_commande) {
+		this.id_commande=id_commande;
+	}
+
+	public void setId(int id_commande) {
         this.id_commande = id_commande;
 	}
 
@@ -25,18 +29,12 @@ public class Commande {
 		return id_commande;
 	}
     
-	@Override
-	public String toString() {
-		return "Commande [id_commande=" + id_commande +", date_commande=" + date_commande+ ", id_client=" + id_client 
-				+ "]";
-	}
-    
     public static void create(Object T){
         try {
             Commande c = (Commande) T;
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="INSERT INTO Commande VALUES("+c.id_commande+","+c.date_commande+","+c.id_client+")";
+            String query="INSERT INTO Commande VALUES("+c.id_commande+","+  java.sql.Date.valueOf(c.date_commande)+","+c.id_client+")";
             requete.executeUpdate(query);
             System.out.println("Commande ajoutee");
         } catch(SQLException sqle){
@@ -64,7 +62,7 @@ public class Commande {
             Statement requete= laConnexion.createStatement();
             String query="update from Commande where id_commande="+c.id_commande;
             requete.executeUpdate(query);
-            System.out.println("commande mis a jour");
+            System.out.println("commande mise a jour");
             } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());
         }  

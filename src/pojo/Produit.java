@@ -21,7 +21,11 @@ public class Produit {
 		this.id_categorie = id_categorie;
     }
     
-    public void setId(int id_produit) {
+    public Produit(int id_produit) {
+		this.id_produit=id_produit;
+	}
+
+	public void setId(int id_produit) {
         this.id_produit=id_produit;
 	}
 
@@ -47,7 +51,7 @@ public class Produit {
             Produit p=(Produit) T;
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="delete from produit where id_produit="+p.id_produit;
+            String query="delete from Produit where id_produit="+p.id_produit;
             requete.executeUpdate(query);
             System.out.println("produit supprime");
         } catch(SQLException sqle){
@@ -60,7 +64,7 @@ public class Produit {
             Produit p=(Produit) T;
             Connection laConnexion = ConnexionMYSQL.creeConnexion();
             Statement requete= laConnexion.createStatement();
-            String query="update from produit where id_produit="+p.id_produit;
+            String query="update from Produit where id_produit="+p.id_produit;
             requete.executeUpdate(query);
             System.out.println("produit mis a jour");
         } catch(SQLException sqle){

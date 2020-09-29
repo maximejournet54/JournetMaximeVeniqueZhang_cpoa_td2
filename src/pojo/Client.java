@@ -20,6 +20,10 @@ public class Client {
         this.ville = ville;
         this.pays = pays;
     }
+    
+    public Client(int id_client) {
+    	this.id_client=id_client;
+    }
 
     public void setId(int id_client) {
         this.id_client=id_client;
@@ -29,22 +33,6 @@ public class Client {
 		return id_client;
 	}
 
-    @Override
-    public String toString() {
-        return "Client{" +
-                "id_client='" + id_client + '\'' +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
-                ", identifiant='" + identifiant + '\'' +
-                ", mdp='" + mdp + '\'' +
-                ", num='" + num + '\'' +
-                ", voie='" + voie + '\'' +
-                ", cp='" + cp + '\'' +
-                ", ville='" + ville + '\'' +
-                ", pays='" + pays + '\'' +
-                '}';
-    }
-
     public static void create(Object T){
         try {
             Client c = (Client) T;
@@ -52,7 +40,6 @@ public class Client {
             Statement requete= laConnexion.createStatement();
             String query="INSERT INTO Client VALUES("+c.id_client+","+c.nom+","+c.prenom+","+c.mdp+","+c.num+","+c.voie+","+c.cp+","+c.ville+","+c.pays+")";
             requete.executeUpdate(query);
-            System.out.println("Client ajoute");
             System.out.println("Client ajoute");
         } catch(SQLException sqle){
             System.out.println("Probleme select:" +sqle.getMessage());

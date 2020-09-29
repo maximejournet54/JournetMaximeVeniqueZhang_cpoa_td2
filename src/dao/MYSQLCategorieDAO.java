@@ -9,8 +9,9 @@ import connexion.ConnexionMYSQL;
 import pojo.Categorie;
 
 public class MYSQLCategorieDAO implements DAO<Categorie>{
-    
-    public boolean create(Object T) {
+	
+    @Override
+	public boolean create(Object T) {
         try {
             Categorie.create(T);
             return true;

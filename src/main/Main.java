@@ -15,9 +15,6 @@ import pojo.Produit;
 
 import java.util.Scanner;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 public class Main {
     public static void main(String[] args)  {
         int id_categorie=0;
@@ -28,7 +25,6 @@ public class Main {
         
         System.out.println("faites un choix: 1=Categorie, 2=Client, 3=Produit, 4=Commande, 5=LigneCommande");
         Scanner sc=new Scanner(System.in);
-        sc.useDelimiter("");
         int i=sc.nextInt();
    
         //categorie
@@ -53,14 +49,14 @@ public class Main {
                 System.out.println("Saisir id_categorie");
                 id_categorie=sc.nextInt();
                 MYSQLCategorieDAO test=new MYSQLCategorieDAO();
-                test.delete(test);
+                test.delete(new Categorie(id_categorie));
             }
             //mettre a jour
             if (choix==3) {
                 System.out.println("Saisir id_categorie");
                 id_categorie=sc.nextInt();
                 MYSQLCategorieDAO test=new MYSQLCategorieDAO();
-                test.update(test);
+                test.update(new Categorie(id_categorie));
             }
         }   
         
@@ -93,14 +89,14 @@ public class Main {
                 System.out.println("Saisir id_client");
                 id_client=sc.nextInt();
                 MYSQLClientDAO test=new MYSQLClientDAO();
-                test.delete(test);
+                test.delete(new Client(id_client));
             }
             //mettre a jour  
             if (choix2==3) {
                 System.out.println("Saisir id_client");
                 id_client=sc.nextInt();
                 MYSQLClientDAO test=new MYSQLClientDAO();
-                test.update(test);
+                test.update(new Client(id_client));
             }
         }
             
@@ -129,14 +125,14 @@ public class Main {
                 System.out.println("Saisir id_produit");
                 id_produit=sc.nextInt();
                 MYSQLProduitDAO test=new MYSQLProduitDAO();
-                test.delete(test);
+                test.delete(new Produit(id_produit));
             }
             //mettre a jour
             if (choix3==3) {
                 System.out.println("Saisir id_client");
                 id_produit=sc.nextInt();
                 MYSQLProduitDAO test=new MYSQLProduitDAO();
-                test.update(test);
+                test.update(new Produit(id_produit));
             }               
         }
 
@@ -146,31 +142,32 @@ public class Main {
             int choix4=sc.nextInt();
             //ajouter
             if (choix4==1) {
-                System.out.println("Saisir id_commande, date en format JJ/MM/AAAA et id_client");
+                System.out.println("Saisir id_commande");
                 id_commande=sc.nextInt();
-                DateTimeFormatter formatage = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate date = LocalDate.parse(date_commande, formatage);
+                System.out.println("Saisir date en format JJ/MM/AAAA");
+                date_commande=sc.next();
+                System.out.println("Saisir id_client");
                 id_client=sc.nextInt();
                 MYSQLCommandeDAO test=new MYSQLCommandeDAO();
                 if(!test.create(new Commande(id_commande,date_commande,id_client))){
                     System.out.println("creation impossible");
                 }
                 else
-                System.out.println("creation effectuee"); 
+                	System.out.println("creation effectuee"); 
             }
             //supprimer
             if (choix4==2) {
                 System.out.println("Saisir id_commande");
                 id_commande=sc.nextInt();
                 MYSQLCommandeDAO test=new MYSQLCommandeDAO();
-                test.delete(test);
+                test.delete(new Commande(id_commande));
             }
             //mettre a jour
             if (choix4==3) {
                 System.out.println("Saisir id_commande");
                 id_commande=sc.nextInt();
                 MYSQLCommandeDAO test=new MYSQLCommandeDAO();
-                test.update(test);
+                test.update(new Commande(id_commande));
             }
         }   
         
@@ -194,17 +191,19 @@ public class Main {
             }
             //supprimer
             if (choix5==2) {
-                System.out.println("Saisir id_commande");
+                System.out.println("Saisir id_commande et id_produit");
                 id_commande=sc.nextInt();
+                id_produit=sc.nextInt();
                 MYSQLLigneCommandeDAO test=new MYSQLLigneCommandeDAO();
-                test.delete(test);
+                test.delete(new LigneCommande(id_commande,id_produit));
             }
             //mettre a jour
             if (choix5==3) {
-                System.out.println("Saisir id_commande");
+                System.out.println("Saisir id_commande et id_produit");
                 id_commande=sc.nextInt();
+                id_produit=sc.nextInt();
                 MYSQLLigneCommandeDAO test=new MYSQLLigneCommandeDAO();
-                test.update(test);
+                test.update(new LigneCommande(id_commande,id_produit));
             }
         }  
     sc.close();
